@@ -7,8 +7,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   echo "https://mirrors.aliyun.com/alpine/v3.19/community" >> /etc/apk/repositories
 
 # 配置npm国内镜像源
-RUN npm config set registry https://registry.npmmirror.com && \
-  npm config set disturl https://npmmirror.com/mirrors/node
+RUN npm config set registry https://registry.npmmirror.com
 
 # 配置pip国内镜像源
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
