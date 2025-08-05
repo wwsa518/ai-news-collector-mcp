@@ -28,17 +28,17 @@ WORKDIR /app
 # 复制package文件
 COPY package*.json ./
 
-# 安装依赖
-RUN npm install --only=production
-
-# 全局安装 TypeScript
-RUN npm install -g typescript
+# 安装所有依赖（包括dev依赖）
+RUN npm install
 
 # 复制源代码
 COPY . .
 
 # 构建应用
 RUN npm run build
+
+# 清理dev依赖，只保留production依赖
+RUN npm prune --production
 
 # 创建必要的目录
 RUN mkdir -p /app/data /app/logs && chown -R node:node /app/data /app/logs
