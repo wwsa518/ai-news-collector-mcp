@@ -31,6 +31,9 @@ services:
     networks:
       - ai-news-network
     command: redis-server --appendonly yes
+    # 配置Alpine Linux使用国内镜像源
+    environment:
+      - APK_REPOSITORIES=https://mirrors.aliyun.com/alpine/v3.19/main,https://mirrors.aliyun.com/alpine/v3.19/community
 
   # MCP服务（可选）
   mcp-server:
