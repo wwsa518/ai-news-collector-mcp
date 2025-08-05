@@ -50,6 +50,14 @@ RUN mkdir -p /app/data /app/logs && chown -R node:node /app/data /app/logs
 # 生产阶段
 FROM node:20-alpine AS production
 
+# 配置中国国内镜像源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
+  echo "https://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories && \
+  echo "https://mirrors.aliyun.com/alpine/v3.19/community" >> /etc/apk/repositories
+
+# 安装dumb-init
+RUN apk add --no-cache dumb-init
+
 # 设置工作目录
 WORKDIR /app
 
