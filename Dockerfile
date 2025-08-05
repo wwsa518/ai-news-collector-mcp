@@ -6,6 +6,9 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
   echo "https://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories && \
   echo "https://mirrors.aliyun.com/alpine/v3.19/community" >> /etc/apk/repositories
 
+# 安装 python3 和 pip
+RUN apk add --no-cache python3 py3-pip
+
 # 配置npm国内镜像源
 RUN npm config set registry https://registry.npmmirror.com
 
@@ -15,8 +18,6 @@ RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && 
 
 # 安装必要的系统依赖
 RUN apk add --no-cache \
-  python3 \
-  py3-pip \
   redis \
   sqlite \
   dumb-init
