@@ -31,6 +31,9 @@ COPY package*.json ./
 # 安装依赖
 RUN npm install --only=production
 
+# 全局安装 TypeScript
+RUN npm install -g typescript
+
 # 复制源代码
 COPY . .
 
