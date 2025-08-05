@@ -34,8 +34,16 @@ RUN npm install
 # 复制源代码
 COPY . .
 
-# 构建应用
-RUN npm run build
+# Install build tools
+RUN apt-get update && apt-get install -y \
+  build-essential \
+  python3 \
+  make \
+  g++
+
+# Install npm dependencies
+RUN npm install
+
 
 # 清理dev依赖，只保留production依赖
 RUN npm prune --production
