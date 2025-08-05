@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  # 主应用服务
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - DATABASE_PATH=/app/data/news.db
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - ai-news-network
+
+  # Redis服务
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+    networks:
+      - ai-news-network
+    command: redis-server --appendonly yes
+
+  # MCP服务（可选）
+  mcp-server:
+    build: .
+    command: ["node", "dist/mcp/index.js"]
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - ai-news-network
+    profiles:
+      - mcp
+
+  # 监控服务（可选）
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    restart: unless-stopped
+    networks:
+      - ai-news-network
+    profiles:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana:/etc/grafana/provisioning
+    restart: unless-stopped
+    networks:
+      - ai-news-network
+    profiles:
+      - monitoring
+
+volumes:
+  redis_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  ai-news-network:
+    driver: bridge
