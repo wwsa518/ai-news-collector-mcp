@@ -115,7 +115,7 @@ export class MCPServer {
             };
 
           case 'health_check':
-            const healthArgs = HealthCheckSchema.parse(args);
+            HealthCheckSchema.parse(args);
             const healthResult = await this.testModule.healthCheck();
             return {
               content: [

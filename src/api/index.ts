@@ -1,5 +1,7 @@
 import { APIServer } from './server';
 
+export { APIServer } from './server';
+
 async function main() {
   try {
     const server = new APIServer();
@@ -24,4 +26,7 @@ async function main() {
   }
 }
 
-main();
+// 如果直接运行此文件，则启动服务器
+if (require.main === module) {
+  main();
+}

@@ -37,18 +37,19 @@ export class APIServer {
     this.app.use(express.urlencoded({ extended: true }));
     
     // 请求日志
-    this.app.use((req, res, next) => {
+    this.app.use((req, _res, next) => {
       this.logger.info(`${req.method} ${req.path}`, {
         ip: req.ip,
         userAgent: req.get('User-Agent'),
       });
       next();
+      return;
     });
   }
 
   private setupRoutes(): void {
     // 健康检查
-    this.app.get('/health', async (req, res) => {
+    this.app.get('/health', async (_req, res) => {
       try {
         const health = await this.testModule.healthCheck();
         const systemStatus: SystemStatus = {
@@ -78,7 +79,7 @@ export class APIServer {
     });
 
     // 测试端点
-    this.app.post('/api/test', async (req, res) => {
+    this.app.post('/api/test', async (req, res): Promise<void> => {
       try {
         const { message } = req.body;
         
@@ -90,7 +91,8 @@ export class APIServer {
             requestId: this.generateRequestId(),
             version: '1.0',
           };
-          return res.status(400).json(response);
+          res.status(400).json(response);
+          return;
         }
 
         const result = await this.testModule.testFunction(message);
@@ -105,6 +107,7 @@ export class APIServer {
         };
         
         res.json(response);
+        return;
       } catch (error) {
         this.logger.error('Test endpoint failed', error);
         const response: ApiResponse = {
@@ -115,13 +118,14 @@ export class APIServer {
           version: '1.0',
         };
         res.status(500).json(response);
+        return;
       }
     });
 
     // 生成测试数据
     this.app.get('/api/test-data', async (req, res) => {
       try {
-        const count = parseInt(req.query.count as string) || 5;
+        const count = parseInt(req.query['count'] as string) || 5;
         const testData = this.testModule.generateTestData(count);
         
         const response: ApiResponse = {
@@ -148,7 +152,7 @@ export class APIServer {
     });
 
     // 系统信息
-    this.app.get('/api/system/info', (req, res) => {
+    this.app.get('/api/system/info', (_req, res) => {
       const response: ApiResponse = {
         code: 200,
         message: 'System information retrieved successfully',
@@ -171,7 +175,7 @@ export class APIServer {
     });
 
     // 404处理
-    this.app.use('*', (req, res) => {
+    this.app.use('*', (_req, res) => {
       const response: ApiResponse = {
         code: 404,
         message: 'Endpoint not found',
@@ -184,7 +188,7 @@ export class APIServer {
   }
 
   private setupErrorHandling(): void {
-    this.app.use((error: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+    this.app.use((error: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
       this.logger.error('Unhandled error', error);
       
       const response: ApiResponse = {
@@ -196,6 +200,7 @@ export class APIServer {
       };
       
       res.status(500).json(response);
+      return;
     });
   }
 
