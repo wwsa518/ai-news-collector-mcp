@@ -16,11 +16,15 @@ RUN npm config set registry https://registry.npmmirror.com
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
   pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn
 
-# 安装必要的系统依赖
+# 安装必要的系统依赖和构建工具
 RUN apk add --no-cache \
-  redis \
-  sqlite \
-  dumb-init
+    redis \
+    sqlite \
+    dumb-init \
+    python3 \
+    make \
+    g++ \
+    linux-headers
 
 # 设置工作目录
 WORKDIR /app
@@ -34,16 +38,8 @@ RUN npm install
 # 复制源代码
 COPY . .
 
-# Install build tools
-RUN apt-get update && apt-get install -y \
-  build-essential \
-  python3 \
-  make \
-  g++
-
-# Install npm dependencies
-RUN npm install
-
+# 构建应用
+RUN npm run build
 
 # 清理dev依赖，只保留production依赖
 RUN npm prune --production
@@ -71,7 +67,7 @@ EXPOSE 3000 3001
 
 # 健康检查
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3000/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
+  CMD node -e "require('http').get('http://localhost:3001/health', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
 
 # 启动命令
 CMD ["dumb-init", "node", "dist/index.js"]
