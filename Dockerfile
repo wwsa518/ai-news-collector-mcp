@@ -1,26 +1,26 @@
-# 基础镜像
-FROM node:20-alpine AS base
+# 构建阶段
+FROM node:20-alpine AS build
 
 # 配置中国国内镜像源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories && \
-    echo "https://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories && \
-    echo "https://mirrors.aliyun.com/alpine/v3.19/community" >> /etc/apk/repositories
+  echo "https://mirrors.aliyun.com/alpine/v3.19/main" > /etc/apk/repositories && \
+  echo "https://mirrors.aliyun.com/alpine/v3.19/community" >> /etc/apk/repositories
 
 # 配置npm国内镜像源
 RUN npm config set registry https://registry.npmmirror.com && \
-    npm config set disturl https://npmmirror.com/mirrors/node
+  npm config set disturl https://npmmirror.com/mirrors/node
 
 # 配置pip国内镜像源
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
-    pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn
+  pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn
 
 # 安装必要的系统依赖
 RUN apk add --no-cache \
-    python3 \
-    py3-pip \
-    redis \
-    sqlite \
-    dumb-init
+  python3 \
+  py3-pip \
+  redis \
+  sqlite \
+  dumb-init
 
 # 设置工作目录
 WORKDIR /app
@@ -38,7 +38,18 @@ COPY . .
 RUN npm run build
 
 # 创建必要的目录
-RUN mkdir -p data logs
+RUN mkdir -p /app/data /app/logs && chown -R node:node /app/data /app/logs
+
+# 生产阶段
+FROM node:20-alpine AS production
+
+# 设置工作目录
+WORKDIR /app
+
+# 从构建阶段复制应用文件
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/package*.json /app/
 
 # 设置环境变量
 ENV NODE_ENV=production
