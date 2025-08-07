@@ -1,0 +1,505 @@
+{
+  "ashare_market_routes": {
+    "last_updated": "2025-08-03",
+    "categories": {
+      "regulatory_authorities": {
+        "description": "证券监管机构 - 中国证监会及其下属机构",
+        "impact_level": "high",
+        "routes": [
+          {
+            "pattern": "/gov/csrc/news/:suffix*",
+            "source": "中国证监会",
+            "description": "证监会新闻发布",
+            "impact": "直接影响市场政策导向，包含重要监管政策、处罚决定、市场规范等",
+            "timeliness": "实时",
+            "url": "http://www.csrc.gov.cn"
+          },
+          {
+            "pattern": "/gov/csrc/auditstatus/:apply_id",
+            "source": "中国证监会",
+            "description": "IPO审核状态查询",
+            "impact": "影响新股发行预期，对次新股板块有直接影响",
+            "timeliness": "每日更新",
+            "url": "http://www.csrc.gov.cn"
+          }
+        ]
+      },
+      "stock_exchanges": {
+        "description": "证券交易所 - 上交所、深交所",
+        "impact_level": "high",
+        "routes": [
+          {
+            "pattern": "/sse/disclosure/:query?",
+            "source": "上海证券交易所",
+            "description": "上交所信息披露",
+            "impact": "上市公司公告、财务报告、重大事项披露，直接影响个股价格",
+            "timeliness": "实时",
+            "url": "http://www.sse.com.cn"
+          },
+          {
+            "pattern": "/sse/inquire",
+            "source": "上海证券交易所",
+            "description": "上交所问询函",
+            "impact": "监管问询通常涉及公司治理或财务问题，可能引发股价波动",
+            "timeliness": "实时",
+            "url": "http://www.sse.com.cn"
+          },
+          {
+            "pattern": "/sse/lawandrules/:slug?",
+            "source": "上海证券交易所",
+            "description": "上交所法律法规",
+            "impact": "交易规则变更影响市场整体运行",
+            "timeliness": "不定期",
+            "url": "http://www.sse.com.cn"
+          },
+          {
+            "pattern": "/sse/convert/:query?",
+            "source": "上海证券交易所",
+            "description": "上交所数据转换",
+            "impact": "提供标准化市场数据",
+            "timeliness": "每日",
+            "url": "http://www.sse.com.cn"
+          },
+          {
+            "pattern": "/sse/renewal",
+            "source": "上海证券交易所",
+            "description": "上交所更新信息",
+            "impact": "交易所最新动态",
+            "timeliness": "实时",
+            "url": "http://www.sse.com.cn"
+          },
+          {
+            "pattern": "/szse/notice",
+            "source": "深圳证券交易所",
+            "description": "深交所公告",
+            "impact": "交易所公告，包含停复牌、交易规则变更等重要信息",
+            "timeliness": "实时",
+            "url": "http://www.szse.cn"
+          },
+          {
+            "pattern": "/szse/inquire/:category?/:select?/:keyword?",
+            "source": "深圳证券交易所",
+            "description": "深交所问询函",
+            "impact": "对创业板、中小板公司问询，影响相关个股",
+            "timeliness": "实时",
+            "url": "http://www.szse.cn"
+          },
+          {
+            "pattern": "/szse/projectdynamic/:type?/:stage?/:status?",
+            "source": "深圳证券交易所",
+            "description": "深交所项目动态",
+            "impact": "IPO项目进度，影响市场资金面预期",
+            "timeliness": "每日",
+            "url": "http://www.szse.cn"
+          },
+          {
+            "pattern": "/szse/rule",
+            "source": "深圳证券交易所",
+            "description": "深交所规则",
+            "impact": "交易规则变更",
+            "timeliness": "不定期",
+            "url": "http://www.szse.cn"
+          }
+        ]
+      },
+      "government_financial": {
+        "description": "政府部门 - 央行、发改委、财政部等",
+        "impact_level": "high",
+        "routes": [
+          {
+            "pattern": "/gov/pbc/goutongjiaoliu",
+            "source": "中国人民银行",
+            "description": "央行沟通交流",
+            "impact": "货币政策导向，直接影响市场流动性和利率预期",
+            "timeliness": "实时",
+            "url": "http://www.pbc.gov.cn"
+          },
+          {
+            "pattern": "/gov/pbc/gzlw",
+            "source": "中国人民银行",
+            "description": "央行工作论文",
+            "impact": "央行研究观点，预示政策走向",
+            "timeliness": "不定期",
+            "url": "http://www.pbc.gov.cn"
+          },
+          {
+            "pattern": "/gov/pbc/tradeAnnouncement",
+            "source": "中国人民银行",
+            "description": "央行交易公告",
+            "impact": "公开市场操作，直接影响短期资金面",
+            "timeliness": "每日",
+            "url": "http://www.pbc.gov.cn"
+          },
+          {
+            "pattern": "/gov/pbc/zcyj",
+            "source": "中国人民银行",
+            "description": "央行政策研究",
+            "impact": "深度政策分析，影响中长期预期",
+            "timeliness": "不定期",
+            "url": "http://www.pbc.gov.cn"
+          },
+          {
+            "pattern": "/gov/ndrc/xwdt/:caty?",
+            "source": "国家发展和改革委员会",
+            "description": "发改委新闻动态",
+            "impact": "产业政策、投资审批、价格调控等重大政策发布",
+            "timeliness": "实时",
+            "url": "http://www.ndrc.gov.cn"
+          },
+          {
+            "pattern": "/gov/mofcom/article/:suffix+",
+            "source": "商务部",
+            "description": "商务部文章",
+            "impact": "贸易政策、外资政策，影响出口导向型企业",
+            "timeliness": "每日",
+            "url": "http://www.mofcom.gov.cn"
+          },
+          {
+            "pattern": "/gov/customs/list/:gchannel?",
+            "source": "海关总署",
+            "description": "海关数据",
+            "impact": "进出口数据，反映经济基本面",
+            "timeliness": "月度",
+            "url": "http://www.customs.gov.cn"
+          },
+          {
+            "pattern": "/gov/stats/sjfb",
+            "source": "国家统计局",
+            "description": "统计局数据发布",
+            "impact": "GDP、CPI、PMI等关键经济指标",
+            "timeliness": "月度/季度",
+            "url": "http://www.stats.gov.cn"
+          },
+          {
+            "pattern": "/gov/stats/sjjd",
+            "source": "国家统计局",
+            "description": "统计局经济解读",
+            "impact": "官方经济数据解读，影响市场预期",
+            "timeliness": "月度/季度",
+            "url": "http://www.stats.gov.cn"
+          },
+          {
+            "pattern": "/gov/stats/tzgg",
+            "source": "国家统计局",
+            "description": "统计局通知公告",
+            "impact": "统计方法变更、数据发布计划等",
+            "timeliness": "不定期",
+            "url": "http://www.stats.gov.cn"
+          }
+        ]
+      },
+      "financial_news": {
+        "description": "财经新闻媒体",
+        "impact_level": "medium",
+        "routes": [
+          {
+            "pattern": "/eastmoney/report/:category",
+            "source": "东方财富",
+            "description": "东方财富研究报告",
+            "impact": "券商研究报告，影响行业和个股投资预期",
+            "timeliness": "每日",
+            "url": "http://www.eastmoney.com"
+          },
+          {
+            "pattern": "/eastmoney/search/:keyword",
+            "source": "东方财富",
+            "description": "东方财富搜索",
+            "impact": "市场热点追踪",
+            "timeliness": "实时",
+            "url": "http://www.eastmoney.com"
+          },
+          {
+            "pattern": "/eastmoney/ttjj/user/:uid",
+            "source": "东方财富",
+            "description": "东方财富用户观点",
+            "impact": "市场情绪指标",
+            "timeliness": "实时",
+            "url": "http://www.eastmoney.com"
+          },
+          {
+            "pattern": "/sina/finance/china/:lid?",
+            "source": "新浪财经",
+            "description": "新浪财经中国",
+            "impact": "国内财经新闻，覆盖面广",
+            "timeliness": "实时",
+            "url": "http://finance.sina.com.cn"
+          },
+          {
+            "pattern": "/sina/finance/stock/usstock/:cids?",
+            "source": "新浪财经",
+            "description": "新浪财经美股",
+            "impact": "美股走势影响A股开盘情绪",
+            "timeliness": "实时",
+            "url": "http://finance.sina.com.cn"
+          },
+          {
+            "pattern": "/yicai/latest",
+            "source": "第一财经",
+            "description": "第一财经最新",
+            "impact": "专业财经新闻，深度分析",
+            "timeliness": "实时",
+            "url": "http://www.yicai.com"
+          },
+          {
+            "pattern": "/yicai/headline",
+            "source": "第一财经",
+            "description": "第一财经头条",
+            "impact": "重要财经头条，市场关注度高",
+            "timeliness": "实时",
+            "url": "http://www.yicai.com"
+          },
+          {
+            "pattern": "/yicai/news/:id?",
+            "source": "第一财经",
+            "description": "第一财经新闻",
+            "impact": "分类财经新闻",
+            "timeliness": "实时",
+            "url": "http://www.yicai.com"
+          },
+          {
+            "pattern": "/yicai/brief",
+            "source": "第一财经",
+            "description": "第一财经简报",
+            "impact": "快速市场概览",
+            "timeliness": "每日",
+            "url": "http://www.yicai.com"
+          },
+          {
+            "pattern": "/caixin/latest",
+            "source": "财新网",
+            "description": "财新网最新",
+            "impact": "深度财经调查，影响力大",
+            "timeliness": "实时",
+            "url": "http://www.caixin.com"
+          },
+          {
+            "pattern": "/caixin/weekly",
+            "source": "财新网",
+            "description": "财新周刊",
+            "impact": "深度分析，影响中长期预期",
+            "timeliness": "周刊",
+            "url": "http://www.caixin.com"
+          },
+          {
+            "pattern": "/caixin/article",
+            "source": "财新网",
+            "description": "财新文章",
+            "impact": "专业财经分析",
+            "timeliness": "每日",
+            "url": "http://www.caixin.com"
+          },
+          {
+            "pattern": "/wallstreetcn/:category?",
+            "source": "华尔街见闻",
+            "description": "华尔街见闻分类",
+            "impact": "国际市场动态，影响A股国际化预期",
+            "timeliness": "实时",
+            "url": "http://wallstreetcn.com"
+          },
+          {
+            "pattern": "/wallstreetcn/news/:category?",
+            "source": "华尔街见闻",
+            "description": "华尔街见闻新闻",
+            "impact": "全球市场新闻",
+            "timeliness": "实时",
+            "url": "http://wallstreetcn.com"
+          },
+          {
+            "pattern": "/wallstreetcn/live/:category?/:score?",
+            "source": "华尔街见闻",
+            "description": "华尔街见闻直播",
+            "impact": "实时市场解读",
+            "timeliness": "实时",
+            "url": "http://wallstreetcn.com"
+          },
+          {
+            "pattern": "/wallstreetcn/hot/:period?",
+            "source": "华尔街见闻",
+            "description": "华尔街见闻热门",
+            "impact": "市场热点追踪",
+            "timeliness": "每日",
+            "url": "http://wallstreetcn.com"
+          },
+          {
+            "pattern": "/cls/depth/:category?",
+            "source": "财联社",
+            "description": "财联社深度",
+            "impact": "快速财经新闻，机构投资者关注",
+            "timeliness": "实时",
+            "url": "http://www.cls.cn"
+          },
+          {
+            "pattern": "/cls/hot",
+            "source": "财联社",
+            "description": "财联社热门",
+            "impact": "市场热点快速反应",
+            "timeliness": "实时",
+            "url": "http://www.cls.cn"
+          },
+          {
+            "pattern": "/cls/telegraph/:category?",
+            "source": "财联社",
+            "description": "财联社电报",
+            "impact": "快讯类新闻，影响短期交易",
+            "timeliness": "实时",
+            "url": "http://www.cls.cn"
+          }
+        ]
+      },
+      "market_data": {
+        "description": "市场数据源",
+        "impact_level": "medium",
+        "routes": [
+          {
+            "pattern": "/xueqiu/stock_info/:id/:type?",
+            "source": "雪球",
+            "description": "雪球股票信息",
+            "impact": "个股基本面数据，影响投资决策",
+            "timeliness": "实时",
+            "url": "https://xueqiu.com"
+          },
+          {
+            "pattern": "/xueqiu/stock_comments/:id/:titleLength?",
+            "source": "雪球",
+            "description": "雪球股票评论",
+            "impact": "投资者情绪指标",
+            "timeliness": "实时",
+            "url": "https://xueqiu.com"
+          },
+          {
+            "pattern": "/xueqiu/hots",
+            "source": "雪球",
+            "description": "雪球热门",
+            "impact": "市场热点追踪",
+            "timeliness": "实时",
+            "url": "https://xueqiu.com"
+          },
+          {
+            "pattern": "/xueqiu/fund/:id",
+            "source": "雪球",
+            "description": "雪球基金",
+            "impact": "基金动向，影响市场资金流向",
+            "timeliness": "每日",
+            "url": "https://xueqiu.com"
+          },
+          {
+            "pattern": "/xueqiu/column/:id",
+            "source": "雪球",
+            "description": "雪球专栏",
+            "impact": "深度投资分析",
+            "timeliness": "每日",
+            "url": "https://xueqiu.com"
+          },
+          {
+            "pattern": "/stockedge/daily-updates/news",
+            "source": "StockEdge",
+            "description": "StockEdge每日更新",
+            "impact": "市场数据更新",
+            "timeliness": "每日",
+            "url": "https://stockedge.com"
+          },
+          {
+            "pattern": "/cebbank/quotation/all",
+            "source": "中国光大银行",
+            "description": "光大银行报价",
+            "impact": "银行间市场报价",
+            "timeliness": "实时",
+            "url": "http://www.cebbank.com"
+          },
+          {
+            "pattern": "/cebbank/quotation/history/:type",
+            "source": "中国光大银行",
+            "description": "光大银行历史报价",
+            "impact": "历史价格数据分析",
+            "timeliness": "每日",
+            "url": "http://www.cebbank.com"
+          }
+        ]
+      },
+      "general_news": {
+        "description": "综合新闻媒体财经版",
+        "impact_level": "low",
+        "routes": [
+          {
+            "pattern": "/chinanews/",
+            "source": "中国新闻社",
+            "description": "中国新闻",
+            "impact": "综合性新闻，包含政策导向",
+            "timeliness": "实时",
+            "url": "http://www.chinanews.com"
+          },
+          {
+            "pattern": "/chinatimes/:caty",
+            "source": "中国时报",
+            "description": "中国时报",
+            "impact": "两岸财经新闻",
+            "timeliness": "每日",
+            "url": "http://www.chinatimes.com"
+          },
+          {
+            "pattern": "/thepaper/list/:id",
+            "source": "澎湃新闻",
+            "description": "澎湃新闻列表",
+            "impact": "时政新闻，影响政策预期",
+            "timeliness": "实时",
+            "url": "http://www.thepaper.cn"
+          },
+          {
+            "pattern": "/thepaper/featured",
+            "source": "澎湃新闻",
+            "description": "澎湃新闻精选",
+            "impact": "重要新闻精选",
+            "timeliness": "每日",
+            "url": "http://www.thepaper.cn"
+          },
+          {
+            "pattern": "/thepaper/channel/:id",
+            "source": "澎湃新闻",
+            "description": "澎湃新闻频道",
+            "impact": "分类新闻，包含财经频道",
+            "timeliness": "实时",
+            "url": "http://www.thepaper.cn"
+          }
+        ]
+      }
+    },
+    "summary": {
+      "total_routes": 58,
+      "high_impact_routes": 22,
+      "medium_impact_routes": 25,
+      "low_impact_routes": 11,
+      "real_time_routes": 38,
+      "daily_routes": 15,
+      "weekly_routes": 3,
+      "monthly_routes": 2,
+      "irregular_routes": 2
+    },
+    "usage_recommendations": {
+      "priority_monitoring": [
+        "/gov/csrc/news/:suffix*",
+        "/sse/disclosure/:query?",
+        "/szse/notice",
+        "/gov/pbc/goutongjiaoliu",
+        "/gov/ndrc/xwdt/:caty?"
+      ],
+      "market_sentiment": [
+        "/xueqiu/hots",
+        "/cls/hot",
+        "/eastmoney/search/:keyword",
+        "/wallstreetcn/live/:category?/:score?"
+      ],
+      "policy_analysis": [
+        "/gov/pbc/zcyj",
+        "/caixin/weekly",
+        "/wallstreetcn/news/:category?",
+        "/yicai/brief"
+      ],
+      "trading_signals": [
+        "/sse/inquire",
+        "/szse/inquire/:category?/:select?/:keyword?",
+        "/cls/telegraph/:category?",
+        "/xueqiu/stock_comments/:id/:titleLength?"
+      ]
+    }
+  }
+}

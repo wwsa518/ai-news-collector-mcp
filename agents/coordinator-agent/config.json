@@ -1,0 +1,22 @@
+{
+  "agent_name": "coordinator",
+  "agent_type": "coordinator",
+  "capabilities": [
+    "task-routing",
+    "agent-management",
+    "health-monitoring",
+    "load-balancing",
+    "service-discovery"
+  ],
+  "dependencies": [
+    "shared-types",
+    "shared-utils"
+  ],
+  "port": 3000,
+  "host": "localhost",
+  "log_level": "info",
+  "max_concurrent_tasks": 100,
+  "task_timeout": 30000,
+  "health_check_interval": 30000,
+  "heartbeat_timeout": 60000
+}

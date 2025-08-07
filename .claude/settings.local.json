@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(git --version)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(redis-cli:*)",
+      "Bash(curl:*)",
+      "Bash(npx tsx:*)"
     ],
     "deny": []
   }

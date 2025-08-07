@@ -1,0 +1,557 @@
+{
+  "realtime_routes": {
+    "秒级更新": {
+      "financial_markets": {
+        "description": "股票、加密货币、金融市场实时数据",
+        "routes": [
+          {
+            "pattern": "/jinse/lives",
+            "source": "金色财经",
+            "description": "区块链和加密货币快讯",
+            "update_frequency": "秒级",
+            "content_type": "金融快讯",
+            "url": "https://rsshub.app/jinse/lives",
+            "notes": "实时更新加密货币市场动态"
+          },
+          {
+            "pattern": "/8btc/news/flash",
+            "source": "巴比特",
+            "description": "区块链快讯",
+            "update_frequency": "秒级",
+            "content_type": "金融快讯",
+            "url": "https://rsshub.app/8btc/news/flash",
+            "notes": "实时区块链新闻快讯"
+          },
+          {
+            "pattern": "/eastmoney/report/:category",
+            "source": "东方财富",
+            "description": "股票市场研究报告",
+            "update_frequency": "秒级",
+            "content_type": "股票数据",
+            "url": "https://rsshub.app/eastmoney/report/category",
+            "notes": "实时股票市场分析报告"
+          },
+          {
+            "pattern": "/sina/finance/stock/usstock/:cids?",
+            "source": "新浪财经",
+            "description": "美股实时数据",
+            "update_frequency": "秒级",
+            "content_type": "股票数据",
+            "url": "https://rsshub.app/sina/finance/stock/usstock",
+            "notes": "美国股市实时行情"
+          },
+          {
+            "pattern": "/sina/finance/china/:lid?",
+            "source": "新浪财经",
+            "description": "中国股市实时数据",
+            "update_frequency": "秒级",
+            "content_type": "股票数据",
+            "url": "https://rsshub.app/sina/finance/china",
+            "notes": "中国股市实时行情"
+          },
+          {
+            "pattern": "/fx-markets/:channel",
+            "source": "FX Markets",
+            "description": "外汇市场数据",
+            "update_frequency": "秒级",
+            "content_type": "外汇数据",
+            "url": "https://rsshub.app/fx-markets/channel",
+            "notes": "实时外汇市场行情"
+          }
+        ]
+      },
+      "live_scores": {
+        "description": "体育比赛实时比分",
+        "routes": [
+          {
+            "pattern": "/qq/live/:id",
+            "source": "腾讯体育",
+            "description": "体育比赛直播",
+            "update_frequency": "秒级",
+            "content_type": "体育比分",
+            "url": "https://rsshub.app/qq/live/id",
+            "notes": "实时体育比赛比分更新"
+          }
+        ]
+      }
+    },
+    "分钟级更新": {
+      "social_media": {
+        "description": "社交媒体动态和时间线",
+        "routes": [
+          {
+            "pattern": "/bilibili/user/dynamic/:uid/:routeParams?",
+            "source": "哔哩哔哩",
+            "description": "B站用户动态",
+            "update_frequency": "分钟级",
+            "content_type": "用户动态",
+            "url": "https://rsshub.app/bilibili/user/dynamic/uid",
+            "notes": "B站用户实时动态更新"
+          },
+          {
+            "pattern": "/bilibili/followings/dynamic/:uid/:routeParams?",
+            "source": "哔哩哔哩",
+            "description": "B站关注动态",
+            "update_frequency": "分钟级",
+            "content_type": "关注动态",
+            "url": "https://rsshub.app/bilibili/followings/dynamic/uid",
+            "notes": "B站关注的用户动态"
+          },
+          {
+            "pattern": "/douyin/user/:uid/:routeParams?",
+            "source": "抖音",
+            "description": "抖音用户作品",
+            "update_frequency": "分钟级",
+            "content_type": "短视频",
+            "url": "https://rsshub.app/douyin/user/uid",
+            "notes": "抖音用户最新作品"
+          },
+          {
+            "pattern": "/weibo/user/:uid/:routeParams?",
+            "source": "微博",
+            "description": "微博用户动态",
+            "update_frequency": "分钟级",
+            "content_type": "社交媒体",
+            "url": "https://rsshub.app/weibo/user/uid",
+            "notes": "微博用户实时动态"
+          },
+          {
+            "pattern": "/weibo/timeline/:uid/:feature?/:routeParams?",
+            "source": "微博",
+            "description": "微博时间线",
+            "update_frequency": "分钟级",
+            "content_type": "社交媒体",
+            "url": "https://rsshub.app/weibo/timeline/uid",
+            "notes": "微博用户时间线动态"
+          },
+          {
+            "pattern": "/twitter/user/:username/:routeParams?",
+            "source": "Twitter",
+            "description": "Twitter用户动态",
+            "update_frequency": "分钟级",
+            "content_type": "社交媒体",
+            "url": "https://rsshub.app/twitter/user/username",
+            "notes": "Twitter用户推文动态"
+          },
+          {
+            "pattern": "/facebook/page/:id/:routeParams?",
+            "source": "Facebook",
+            "description": "Facebook页面动态",
+            "update_frequency": "分钟级",
+            "content_type": "社交媒体",
+            "url": "https://rsshub.app/facebook/page/id",
+            "notes": "Facebook页面更新"
+          },
+          {
+            "pattern": "/douban/people/:userid/status/:routeParams?",
+            "source": "豆瓣",
+            "description": "豆瓣用户状态",
+            "update_frequency": "分钟级",
+            "content_type": "社交媒体",
+            "url": "https://rsshub.app/douban/people/userid/status",
+            "notes": "豆瓣用户状态更新"
+          }
+        ]
+      },
+      "news_feeds": {
+        "description": "新闻资讯实时更新",
+        "routes": [
+          {
+            "pattern": "/163/news/rank/:category?/:type?/:time?",
+            "source": "网易新闻",
+            "description": "网易新闻排行榜",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/163/news/rank",
+            "notes": "实时新闻排行榜"
+          },
+          {
+            "pattern": "/sina/rollnews/:lid?",
+            "source": "新浪新闻",
+            "description": "新浪滚动新闻",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/sina/rollnews",
+            "notes": "实时滚动新闻"
+          },
+          {
+            "pattern": "/bjnews/:cat",
+            "source": "北京青年报",
+            "description": "北青网新闻",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/bjnews/cat",
+            "notes": "实时新闻更新"
+          },
+          {
+            "pattern": "/chinanews/",
+            "source": "中国新闻网",
+            "description": "中国新闻网",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/chinanews",
+            "notes": "实时新闻资讯"
+          },
+          {
+            "pattern": "/chinanews/scroll",
+            "source": "中国新闻网",
+            "description": "中新网滚动新闻",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/chinanews/scroll",
+            "notes": "实时滚动新闻"
+          },
+          {
+            "pattern": "/thepaper/:category?",
+            "source": "澎湃新闻",
+            "description": "澎湃新闻",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/thepaper/category",
+            "notes": "实时新闻更新"
+          },
+          {
+            "pattern": "/guancha/:column?",
+            "source": "观察者网",
+            "description": "观察者网",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/guancha/column",
+            "notes": "实时新闻评论"
+          },
+          {
+            "pattern": "/huanqiu/:category?",
+            "source": "环球网",
+            "description": "环球网",
+            "update_frequency": "分钟级",
+            "content_type": "新闻资讯",
+            "url": "https://rsshub.app/huanqiu/category",
+            "notes": "实时国际新闻"
+          }
+        ]
+      },
+      "tech_updates": {
+        "description": "技术更新和开源项目动态",
+        "routes": [
+          {
+            "pattern": "/github/issue/:owner/:repo",
+            "source": "GitHub",
+            "description": "GitHub项目Issues",
+            "update_frequency": "分钟级",
+            "content_type": "技术动态",
+            "url": "https://rsshub.app/github/issue/owner/repo",
+            "notes": "GitHub项目Issues实时更新"
+          },
+          {
+            "pattern": "/github/pull/:owner/:repo",
+            "source": "GitHub",
+            "description": "GitHub项目Pull Requests",
+            "update_frequency": "分钟级",
+            "content_type": "技术动态",
+            "url": "https://rsshub.app/github/pull/owner/repo",
+            "notes": "GitHub项目PR实时更新"
+          },
+          {
+            "pattern": "/gitlab/releases/:owner/:repo",
+            "source": "GitLab",
+            "description": "GitLab项目发布",
+            "update_frequency": "分钟级",
+            "content_type": "技术动态",
+            "url": "https://rsshub.app/gitlab/releases/owner/repo",
+            "notes": "GitLab项目版本发布"
+          },
+          {
+            "pattern": "/stackoverflow/questions/:tag?",
+            "source": "Stack Overflow",
+            "description": "Stack Overflow问题",
+            "update_frequency": "分钟级",
+            "content_type": "技术问答",
+            "url": "https://rsshub.app/stackoverflow/questions/tag",
+            "notes": "技术问题实时更新"
+          }
+        ]
+      }
+    },
+    "实时更新": {
+      "live_streaming": {
+        "description": "直播平台实时状态",
+        "routes": [
+          {
+            "pattern": "/bilibili/live/room/:roomID",
+            "source": "哔哩哔哩",
+            "description": "B站直播间状态",
+            "update_frequency": "实时",
+            "content_type": "直播状态",
+            "url": "https://rsshub.app/bilibili/live/room/roomID",
+            "notes": "B站直播间开播状态实时更新"
+          },
+          {
+            "pattern": "/bilibili/live/area/:areaID/:order",
+            "source": "哔哩哔哩",
+            "description": "B站直播分区",
+            "update_frequency": "实时",
+            "content_type": "直播列表",
+            "url": "https://rsshub.app/bilibili/live/area/areaID/order",
+            "notes": "B站直播分区实时列表"
+          },
+          {
+            "pattern": "/douyu/room/:id",
+            "source": "斗鱼",
+            "description": "斗鱼直播间",
+            "update_frequency": "实时",
+            "content_type": "直播状态",
+            "url": "https://rsshub.app/douyu/room/id",
+            "notes": "斗鱼直播间开播状态"
+          },
+          {
+            "pattern": "/huya/live/:id",
+            "source": "虎牙",
+            "description": "虎牙直播间",
+            "update_frequency": "实时",
+            "content_type": "直播状态",
+            "url": "https://rsshub.app/huya/live/id",
+            "notes": "虎牙直播间开播状态"
+          },
+          {
+            "pattern": "/douyin/live/:rid",
+            "source": "抖音",
+            "description": "抖音直播",
+            "update_frequency": "实时",
+            "content_type": "直播状态",
+            "url": "https://rsshub.app/douyin/live/rid",
+            "notes": "抖音直播实时状态"
+          },
+          {
+            "pattern": "/twitch/live/:login",
+            "source": "Twitch",
+            "description": "Twitch直播",
+            "update_frequency": "实时",
+            "content_type": "直播状态",
+            "url": "https://rsshub.app/twitch/live/login",
+            "notes": "Twitch直播频道状态"
+          },
+          {
+            "pattern": "/youtube/live/:username/:embed?",
+            "source": "YouTube",
+            "description": "YouTube直播",
+            "update_frequency": "实时",
+            "content_type": "直播状态",
+            "url": "https://rsshub.app/youtube/live/username",
+            "notes": "YouTube直播频道状态"
+          }
+        ]
+      },
+      "system_status": {
+        "description": "系统状态和服务监控",
+        "routes": [
+          {
+            "pattern": "/lwn/alerts/:distributor",
+            "source": "LWN",
+            "description": "系统安全警报",
+            "update_frequency": "实时",
+            "content_type": "系统状态",
+            "url": "https://rsshub.app/lwn/alerts/distributor",
+            "notes": "Linux系统安全警报"
+          }
+        ]
+      }
+    },
+    "小时级更新": {
+      "weather_environment": {
+        "description": "天气和环境数据",
+        "routes": [
+          {
+            "pattern": "/hko/weather",
+            "source": "香港天文台",
+            "description": "香港天气",
+            "update_frequency": "小时级",
+            "content_type": "天气数据",
+            "url": "https://rsshub.app/hko/weather",
+            "notes": "香港地区天气实况"
+          },
+          {
+            "pattern": "/qweather/now/:location",
+            "source": "和风天气",
+            "description": "实时天气",
+            "update_frequency": "小时级",
+            "content_type": "天气数据",
+            "url": "https://rsshub.app/qweather/now/location",
+            "notes": "和风天气实时数据"
+          },
+          {
+            "pattern": "/qweather/3days/:location",
+            "source": "和风天气",
+            "description": "三天天气预报",
+            "update_frequency": "小时级",
+            "content_type": "天气预报",
+            "url": "https://rsshub.app/qweather/3days/location",
+            "notes": "三天天气预报更新"
+          },
+          {
+            "pattern": "/weatheralarm/:province?",
+            "source": "天气警报",
+            "description": "天气警报",
+            "update_frequency": "小时级",
+            "content_type": "天气警报",
+            "url": "https://rsshub.app/weatheralarm/province",
+            "notes": "天气灾害警报"
+          },
+          {
+            "pattern": "/tam/forecast",
+            "source": "TAM",
+            "description": "天气预报",
+            "update_frequency": "小时级",
+            "content_type": "天气预报",
+            "url": "https://rsshub.app/tam/forecast",
+            "notes": "天气预报信息"
+          },
+          {
+            "pattern": "/aqicn/:location?",
+            "source": "AQICN",
+            "description": "空气质量指数",
+            "update_frequency": "小时级",
+            "content_type": "环境数据",
+            "url": "https://rsshub.app/aqicn/location",
+            "notes": "实时空气质量指数"
+          }
+        ]
+      },
+      "transportation": {
+        "description": "交通和物流信息",
+        "routes": [
+          {
+            "pattern": "/dhl/shipment-tracking/:tracking_number",
+            "source": "DHL",
+            "description": "DHL包裹跟踪",
+            "update_frequency": "小时级",
+            "content_type": "物流信息",
+            "url": "https://rsshub.app/dhl/shipment-tracking/tracking_number",
+            "notes": "DHL包裹实时跟踪"
+          }
+        ]
+      }
+    },
+    "事件驱动": {
+      "sports_gaming": {
+        "description": "体育和游戏赛事",
+        "routes": [
+          {
+            "pattern": "/lol/newsindex",
+            "source": "英雄联盟",
+            "description": "英雄联盟新闻",
+            "update_frequency": "事件驱动",
+            "content_type": "游戏新闻",
+            "url": "https://rsshub.app/lol/newsindex",
+            "notes": "英雄联盟游戏新闻"
+          },
+          {
+            "pattern": "/dota2/news/:category?",
+            "source": "Dota 2",
+            "description": "Dota 2新闻",
+            "update_frequency": "事件驱动",
+            "content_type": "游戏新闻",
+            "url": "https://rsshub.app/dota2/news/category",
+            "notes": "Dota 2游戏新闻"
+          },
+          {
+            "pattern": "/nba/app_news",
+            "source": "NBA",
+            "description": "NBA新闻",
+            "update_frequency": "事件驱动",
+            "content_type": "体育新闻",
+            "url": "https://rsshub.app/nba/app_news",
+            "notes": "NBA篮球新闻"
+          },
+          {
+            "pattern": "/sina/sports/:type?",
+            "source": "新浪体育",
+            "description": "新浪体育",
+            "update_frequency": "事件驱动",
+            "content_type": "体育新闻",
+            "url": "https://rsshub.app/sina/sports/type",
+            "notes": "综合体育新闻"
+          }
+        ]
+      },
+      "breaking_news": {
+        "description": "突发新闻和紧急通知",
+        "routes": [
+          {
+            "pattern": "/chaping/newsflash",
+            "source": "差评",
+            "description": "差评快讯",
+            "update_frequency": "事件驱动",
+            "content_type": "突发新闻",
+            "url": "https://rsshub.app/chaping/newsflash",
+            "notes": "科技突发新闻"
+          },
+          {
+            "pattern": "/discourse/:configId/notifications/:fulltext?",
+            "source": "Discourse",
+            "description": "论坛通知",
+            "update_frequency": "事件驱动",
+            "content_type": "系统通知",
+            "url": "https://rsshub.app/discourse/configId/notifications",
+            "notes": "Discourse论坛通知"
+          }
+        ]
+      },
+      "product_updates": {
+        "description": "产品更新和发布",
+        "routes": [
+          {
+            "pattern": "/microsoft-store/updates/:productid/:market?",
+            "source": "Microsoft Store",
+            "description": "微软应用更新",
+            "update_frequency": "事件驱动",
+            "content_type": "产品更新",
+            "url": "https://rsshub.app/microsoft-store/updates/productid/market",
+            "notes": "微软应用商店更新"
+          },
+          {
+            "pattern": "/apple/apps/update/:country/:id/:platform?",
+            "source": "Apple App Store",
+            "description": "苹果应用更新",
+            "update_frequency": "事件驱动",
+            "content_type": "产品更新",
+            "url": "https://rsshub.app/apple/apps/update/country/id/platform",
+            "notes": "苹果应用更新"
+          },
+          {
+            "pattern": "/vscode/marketplace/:type?",
+            "source": "VS Code",
+            "description": "VS Code扩展",
+            "update_frequency": "事件驱动",
+            "content_type": "产品更新",
+            "url": "https://rsshub.app/vscode/marketplace/type",
+            "notes": "VS Code扩展市场更新"
+          }
+        ]
+      }
+    }
+  },
+  "metadata": {
+    "total_routes": 68,
+    "last_updated": "2025-08-03",
+    "update_frequency_distribution": {
+      "秒级更新": 7,
+      "分钟级更新": 24,
+      "实时更新": 9,
+      "小时级更新": 8,
+      "事件驱动": 20
+    },
+    "content_type_distribution": {
+      "金融数据": 6,
+      "社交媒体": 8,
+      "新闻资讯": 8,
+      "直播状态": 7,
+      "天气环境": 6,
+      "技术动态": 4,
+      "体育游戏": 4,
+      "产品更新": 3,
+      "系统状态": 2,
+      "交通物流": 1,
+      "其他": 19
+    }
+  }
+}

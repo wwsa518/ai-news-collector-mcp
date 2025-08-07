@@ -1,0 +1,89 @@
+{
+  "collectors": [
+    {
+      "type": "rss",
+      "name": "rsshub_news",
+      "enabled": true,
+      "priority": 1,
+      "schedule": "0 */5 * * * *",
+      "config": {
+        "url": "http://124.221.80.250:5678/news",
+        "name": "RSSHub News",
+        "category": "news",
+        "language": "zh",
+        "update_frequency": 300,
+        "max_items": 20,
+        "user_agent": "AI-News-Collector/1.0"
+      }
+    },
+    {
+      "type": "rss",
+      "name": "tech_news",
+      "enabled": true,
+      "priority": 2,
+      "schedule": "0 */10 * * * *",
+      "config": {
+        "url": "http://124.221.80.250:5678/tech",
+        "name": "Tech News",
+        "category": "technology",
+        "language": "zh",
+        "update_frequency": 600,
+        "max_items": 15,
+        "user_agent": "AI-News-Collector/1.0"
+      }
+    },
+    {
+      "type": "web",
+      "name": "example_news_site",
+      "enabled": false,
+      "priority": 3,
+      "schedule": "0 */30 * * * *",
+      "config": {
+        "url": "https://example.com/news",
+        "name": "Example News Site",
+        "category": "general",
+        "language": "zh",
+        "update_frequency": 1800,
+        "max_items": 10,
+        "user_agent": "AI-News-Collector/1.0",
+        "selectors": {
+          "title": "h1, h2, .title, .headline",
+          "content": "p, .content, .article",
+          "link": "a[href]",
+          "date": "time, .date, .time"
+        }
+      }
+    },
+    {
+      "type": "api",
+      "name": "news_api",
+      "enabled": false,
+      "priority": 4,
+      "schedule": "0 */15 * * * *",
+      "config": {
+        "url": "https://api.example.com/news",
+        "name": "News API",
+        "method": "GET",
+        "category": "general",
+        "language": "zh",
+        "update_frequency": 900,
+        "max_items": 25,
+        "headers": {
+          "Accept": "application/json"
+        },
+        "response_path": "data.articles",
+        "mapping": {
+          "title": "title",
+          "content": "description",
+          "url": "url",
+          "date": "publishedAt",
+          "id": "id"
+        },
+        "rate_limit": {
+          "requests_per_minute": 30,
+          "requests_per_hour": 500
+        }
+      }
+    }
+  ]
+}

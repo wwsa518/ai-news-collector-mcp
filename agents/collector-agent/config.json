@@ -1,0 +1,28 @@
+{
+  "agent_name": "collector",
+  "agent_type": "data-collection",
+  "capabilities": [
+    "rss-collection",
+    "web-scraping",
+    "api-integration",
+    "scheduled-collection",
+    "fault-tolerance"
+  ],
+  "dependencies": [
+    "shared-types",
+    "shared-utils",
+    "coordinator-agent"
+  ],
+  "port": 3001,
+  "host": "localhost",
+  "log_level": "info",
+  "max_concurrent_sources": 10,
+  "collection_timeout": 60000,
+  "retry_attempts": 3,
+  "retry_delay": 5000,
+  "user_agent": "AI-News-Collector/1.0",
+  "rate_limit": {
+    "requests_per_minute": 60,
+    "requests_per_hour": 1000
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "coordinator": {
+    "agent_name": "coordinator",
+    "agent_type": "coordinator",
+    "capabilities": [
+      "task_distribution",
+      "agent_management",
+      "health_monitoring"
+    ],
+    "dependencies": [
+      "shared-types",
+      "shared-utils"
+    ],
+    "port": 3000,
+    "host": "localhost",
+    "log_level": "info"
+  },
+  "collector": {
+    "agent_name": "collector",
+    "agent_type": "data-collection",
+    "capabilities": [
+      "rss-collection",
+      "web-scraping",
+      "api-integration"
+    ],
+    "dependencies": [
+      "shared-types",
+      "shared-utils",
+      "coordinator-agent"
+    ],
+    "port": 3001,
+    "host": "localhost",
+    "log_level": "info",
+    "max_concurrent_sources": 10,
+    "collection_timeout": 60000,
+    "retry_attempts": 3,
+    "retry_delay": 5000,
+    "user_agent": "AI-News-Collector/1.0",
+    "rate_limit": {
+      "requests_per_minute": 60,
+      "requests_per_hour": 1000
+    }
+  },
+  "processor": {
+    "agent_name": "processor",
+    "agent_type": "data-processing",
+    "capabilities": [
+      "content-cleaning",
+      "entity-recognition",
+      "event-extraction"
+    ],
+    "dependencies": [
+      "shared-types",
+      "shared-utils",
+      "coordinator-agent"
+    ],
+    "port": 3002,
+    "host": "localhost",
+    "log_level": "info"
+  },
+  "analyzer": {
+    "agent_name": "analyzer",
+    "agent_type": "analysis",
+    "capabilities": [
+      "sentiment-analysis",
+      "risk-detection",
+      "trend-analysis"
+    ],
+    "dependencies": [
+      "shared-types",
+      "shared-utils",
+      "coordinator-agent"
+    ],
+    "port": 3003,
+    "host": "localhost",
+    "log_level": "info"
+  },
+  "collectors": [],
+  "system": {
+    "log_level": "info",
+    "health_check_interval": 30000,
+    "heartbeat_timeout": 60000,
+    "max_concurrent_tasks": 50,
+    "task_timeout": 300000
+  }
+}

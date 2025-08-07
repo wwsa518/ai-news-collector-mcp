@@ -4,8 +4,7 @@
     "module": "commonjs",
     "lib": ["ES2022"],
     "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
+        "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -30,6 +29,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "shared/**/*", "agents/**/*"],
   "exclude": ["node_modules", "dist", "tests"]
 }

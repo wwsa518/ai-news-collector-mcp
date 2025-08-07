@@ -1,0 +1,38 @@
+{
+  "agent_name": "analyzer",
+  "agent_type": "analysis",
+  "capabilities": [
+    "sentiment-analysis",
+    "risk-detection",
+    "trend-analysis",
+    "pattern-matching",
+    "report-generation"
+  ],
+  "dependencies": [
+    "shared-types",
+    "shared-utils",
+    "coordinator-agent",
+    "processor-agent"
+  ],
+  "port": 3003,
+  "host": "localhost",
+  "log_level": "info",
+  "max_concurrent_tasks": 15,
+  "analysis_timeout": 45000,
+  "sentiment_analysis": {
+    "model_type": "transformers",
+    "confidence_threshold": 0.8,
+    "batch_size": 10
+  },
+  "risk_detection": {
+    "enable_financial_risks": true,
+    "enable_reputation_risks": true,
+    "enable_market_risks": true,
+    "severity_threshold": 0.7
+  },
+  "trend_analysis": {
+    "time_window": 24,
+    "min_events_for_trend": 5,
+    "confidence_threshold": 0.6
+  }
+}

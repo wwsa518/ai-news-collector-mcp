@@ -1,0 +1,39 @@
+{
+  "agent_name": "processor",
+  "agent_type": "data-processing",
+  "capabilities": [
+    "html-cleaning",
+    "content-extraction",
+    "entity-recognition",
+    "event-extraction",
+    "text-normalization"
+  ],
+  "dependencies": [
+    "shared-types",
+    "shared-utils",
+    "coordinator-agent",
+    "collector-agent"
+  ],
+  "port": 3002,
+  "host": "localhost",
+  "log_level": "info",
+  "max_concurrent_tasks": 20,
+  "processing_timeout": 30000,
+  "entity_recognition": {
+    "enable_stock_codes": true,
+    "enable_companies": true,
+    "enable_persons": true,
+    "enable_locations": true,
+    "confidence_threshold": 0.7
+  },
+  "event_extraction": {
+    "enable_triple_extraction": true,
+    "confidence_threshold": 0.6
+  },
+  "content_cleaning": {
+    "remove_html": true,
+    "remove_ads": true,
+    "normalize_whitespace": true,
+    "min_content_length": 100
+  }
+}
